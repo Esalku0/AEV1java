@@ -4,8 +4,10 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
@@ -37,9 +39,12 @@ public class Controlador {
 			        j.showOpenDialog(j);
 			       
 			        String nombre = j.getSelectedFile().getName(); 
-					FileReader fReader = new FileReader(ruta);
-					
-					vista.getDatos().append(Modelo.mostrarDatos("ficherin"));
+					FileReader fReader = new FileReader(nombre);
+					File fichero = new File(nombre);
+					String ruta = fichero.getPath();
+
+					vista.getDatos().append(Model.mostrarDatos(nombre));
+					vista.getContenidoFichero().append(Model.mostrarContenidoPrincipal(ruta));
 					
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
