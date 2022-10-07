@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
-
 public class Controlador {
 
 	protected static final Component JFrame = null;
@@ -26,26 +25,22 @@ public class Controlador {
 
 	private void initEventHandler() {
 
-		
 		ActionListener anyadirActionListener = new ActionListener() {
-			
 
 			public void actionPerformed(ActionEvent e) {
-				
 
-				
-		        try {
-			        JFileChooser j = new JFileChooser();
-			        j.showOpenDialog(j);
-			       
-			        String nombre = j.getSelectedFile().getName(); 
+				try {
+					JFileChooser j = new JFileChooser();
+					j.showOpenDialog(j);
+
+					String nombre = j.getSelectedFile().getName();
 					FileReader fReader = new FileReader(nombre);
 					File fichero = new File(nombre);
 					String ruta = fichero.getPath();
 
 					vista.getDatos().append(Model.mostrarDatos(nombre));
 					vista.getContenidoFichero().append(Model.mostrarContenidoPrincipal(ruta));
-					
+
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -53,9 +48,21 @@ public class Controlador {
 			}
 		};
 		vista.getElegirFichero().addActionListener(anyadirActionListener);
+
 		
+		
+		ActionListener botonReemplazar = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String nomActualString = vista.getNombreActual();
+				
+			}
+		};
 		
 		
 	}
 
+	
+	
+	
 }

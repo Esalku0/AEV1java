@@ -45,6 +45,20 @@ public class Model {
 		}
 		return texto;
 	}
+	
+	public static boolean name(String nombreActual, String nombreReemplazar) {
+		File f1 = new File(nombreActual);
+		File f2 = new File(nombreReemplazar);
+		
+		
+		if (f1.renameTo(f2)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 
 }
 
