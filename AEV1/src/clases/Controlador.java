@@ -51,18 +51,72 @@ public class Controlador {
 
 		
 		
+		//Este ActionListener nos va a permitir cambiarle el nombre a un fichero
+		//Tenemos que usar los dos JTEXTFIELD para el nombre antiguo y el nombre nuevo
 		ActionListener botonReemplazar = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				String nomActualString = vista.getNombreActual().getText();
+
+				String nomReemplazarString = vista.getNombreReemplazar().getText();
+
+				model.cambiarNombre(nomActualString, nomReemplazarString);
+
+			}
+		};
+
+		vista.getBtnReemplazar().addActionListener(botonReemplazar);
+
+		
+		//ACTION LISTENER DEL BOTON PARA CREAR UN FICHERO
+		//Este boton nos permite crear un fichero pasandole la ruta por parametro
+		ActionListener botonCrearFicheroActionListener = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				String ruta = vista.getRutaFichero().getText();
+
+				model.crearFichero(ruta);
+
+			}
+		};
+
+		vista.getBtnCrearFichero().addActionListener(botonCrearFicheroActionListener);
+
+		//ACTION LISTENER DEL BOTON PARA ELIMINAR UN FICHERO
+		//Este metodo nos permite eliminar un fichero pasandole un nombre o ruta por parametro
+		ActionListener botonEliminarFichero = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				String nomActualString = vista.getNombreActual();
+
+				
+				String ruta = vista.getRutaFichero().getText();
+				model.eliminarFichero(ruta);
 				
 			}
 		};
+		vista.getBtnBorrarFichero().addActionListener(botonEliminarFichero);
+		
+		ActionListener botonCopia = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+	
+				String rutaOriginalString = vista.getRutaCopiaOriginal().getText();
+				
+				model.copiarArchivo(rutaOriginalString);
+			}
+		};
+		vista.getBtnCopiarFichero().addActionListener(botonCopia);
+	
+		
+		
+		
+		
+		
 		
 		
 	}
+	
 
-	
-	
-	
+
 }
